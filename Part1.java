@@ -5,6 +5,7 @@
  * @author (Mehedi Hasan)
  * @version (11-09-2017)
  */
+import edu.duke.*;
 public class Part1
 {
     public int findStopCodon(String dna, int startIndex, String stopCodon){
@@ -53,9 +54,24 @@ public class Part1
           startIndex = dna.indexOf(currentGene, startIndex) + currentGene.length();
         }
     }
+    public StorageResource getAllGenes(String dna){
+        StorageResource res = new StorageResource();
+        int startIndex = 0;
+        String currentGene = "";
+        while ( true ) {
+            currentGene = findGene(dna, startIndex);
+            if (currentGene.isEmpty()) {
+                break;
+            }
+            res.add(currentGene);
+            startIndex = dna.indexOf(currentGene, startIndex) + currentGene.length();
+        }
+        return res;
+    }
     public void testOn(String dna) {
-        System.out.println("Testing printAllGenes on " + dna);
-        printAllGenes(dna);
+        //System.out.println("Testing printAllGenes on " + dna);
+        //printAllGenes(dna);
+        
     }
     public void test() {
         testOn("ATGATCTAATTTATGCTGCAACGGTGAAGA");

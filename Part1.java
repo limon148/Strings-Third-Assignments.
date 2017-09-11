@@ -69,7 +69,11 @@ public class Part1
         return res;
     }
     public void testOn(String dna) {
-        //System.out.println("Testing printAllGenes on " + dna);
+        System.out.println("Testing printAllGenes on " + dna);
+        StorageResource res = new StorageResource(getAllGenes(dna));
+        for(String s : res.data()){
+            System.out.println(s);
+        }
         //printAllGenes(dna);
         
     }

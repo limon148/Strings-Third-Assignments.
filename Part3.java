@@ -1,33 +1,49 @@
 
 /**
- * Write a description of class Part3 here.
+ * Write a description of class Part1 here.
  *
- * @author (your name)
- * @version (a version number or a date)
- */
+ * @author (Mehedi Hasan)
+ * @version (11-09-2017)
+**/
+import edu.duke.*;
 public class Part3
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Part3
-     */
-    public Part3()
+    float cgRatio(String DNA)
     {
-        // initialise instance variables
-        x = 0;
+        int count = 0;
+        for(int i = 0; i != DNA.length(); ++i)
+        {
+            if(DNA.charAt(i) == 'G' || DNA.charAt(i) == 'C')
+                count++;
+        }
+        return (float)count/DNA.length();
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    void processGenes(StorageResource sr)
     {
-        // put your code here
-        return x + y;
+        int countGreaterThan9Length = 0;
+        int countCGRatio = 0;
+        String longest = "";
+        boolean printed;
+        for(String s : sr.data())
+        {
+            printed = false;
+            if(longest.length() < s.length())
+                longest = s;
+            if(cgRatio(s) > .35)
+            {
+                countCGRatio++;
+                System.out.println(s);
+                if(s.length() > 9)
+                    printed = true;
+            }
+            if(s.length() > 9)
+            {
+                countGreaterThan9Length++;
+                if(!printed)
+                    System.out.println(s);
+            }
+        }
+        System.out.println("Greater than 9 length strings: " + countGreaterThan9Length);
+        System.out.println("Greater than .35 cgRatio: " + countCGRatio);
     }
 }
